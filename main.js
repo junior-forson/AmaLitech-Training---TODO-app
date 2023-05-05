@@ -36,8 +36,8 @@ addButton.addEventListener('click',()=>{
   }
 })
 
-itemInput.addEventListener('keypress',(event)=>{
-  if(event.code==='Enter' && itemInput.value.length > 0){
+itemInput.addEventListener('keyup',(event)=>{
+  if((event.code==='Enter'|| event.code==='Go') && itemInput.value.length > 0){
       addItems(itemInput.value);
       itemInput.value = '';
   }
