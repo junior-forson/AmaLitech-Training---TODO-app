@@ -36,8 +36,16 @@ addButton.addEventListener('click',()=>{
   }
 })
 
+addButton.addEventListener('tourchstart',()=>{
+  if(itemInput.value.length > 0){
+      addItems(itemInput.value);
+      itemInput.value = '';
+  }
+})
+
+
 itemInput.addEventListener('keyup',(event)=>{
-  if((event.code==='Enter'|| event.code==='Go') && itemInput.value.length > 0){
+  if((event.code==='Enter'|| event.code==='Go' || event.key==='Enter' || event.key==='Go') && itemInput.value.length > 0){
       addItems(itemInput.value);
       itemInput.value = '';
   }
@@ -71,6 +79,12 @@ function removeItems(item){
 }
 
 todo.addEventListener('click',(event)=>{
+  if(event.target.classList.contains('remove')){
+      removeItems(event.target.parentElement);
+  }
+})
+
+todo.addEventListener('touchstart',(event)=>{
   if(event.target.classList.contains('remove')){
       removeItems(event.target.parentElement);
   }
@@ -124,7 +138,7 @@ clear.addEventListener('click',()=>{
       removeItems(item.closest('li'));
   })
 })
-mobClear.addEventListener('click',()=>{
+mobClear.addEventListener('touchstart',()=>{
   const itemChecked = document.querySelectorAll('.list input[type="checkbox"]:checked');
   itemChecked.forEach(item=>{
       removeItems(item.closest('li'));
