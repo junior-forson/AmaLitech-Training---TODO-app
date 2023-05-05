@@ -15,21 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const themeIcon = document.querySelector('.theme');
   
-    if (themeIcon) {
-      themeIcon.addEventListener('pointerdown', () => {
-        document.body.classList.toggle('dark');
-        if (document.body.classList.contains('dark')) {
-          themeIcon.src = 'images/icon-sun.svg';
-        } else {
-          themeIcon.src = 'images/icon-moon.svg';
-        }
-      });
-    }
-  });
-
 
   
  //Count Items left
@@ -46,13 +32,6 @@ const todo = document.querySelector('.todos ul');
 const itemID = document.querySelector('.filters input[type="radio"]:checked');
 
 addButton.addEventListener('click',()=>{
-  if(itemInput.value.length > 0){
-      addItems(itemInput.value);
-      itemInput.value = '';
-  }
-})
-
-addButton.addEventListener('pointerdown',()=>{
   if(itemInput.value.length > 0){
       addItems(itemInput.value);
       itemInput.value = '';
@@ -100,7 +79,7 @@ todo.addEventListener('click',(event)=>{
   }
 })
 
-todo.addEventListener('pointerdown',(event)=>{
+todo.addEventListener('touchstart',(event)=>{
   if(event.target.classList.contains('remove')){
       removeItems(event.target.parentElement);
   }
@@ -149,12 +128,6 @@ const clear = document.querySelector('.clear');
 const mobClear = document.querySelector('.mob-clear');
 
 clear.addEventListener('click',()=>{
-  const itemChecked = document.querySelectorAll('.list input[type="checkbox"]:checked');
-  itemChecked.forEach(item=>{
-      removeItems(item.closest('li'));
-  })
-})
-mobClear.addEventListener('pointerdown',()=>{
   const itemChecked = document.querySelectorAll('.list input[type="checkbox"]:checked');
   itemChecked.forEach(item=>{
       removeItems(item.closest('li'));
