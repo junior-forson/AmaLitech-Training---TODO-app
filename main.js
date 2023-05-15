@@ -19,7 +19,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   
  //Count Items left
+
+ //Count Items left
 const itemCount = document.querySelector('.count span');
+const mobCount = document.querySelector('.mob-count span');
+
+function updateItemCount() {
+  const uncheckedItems = document.querySelectorAll('.list:not(.checked)');
+  itemCount.innerText = uncheckedItems.length;
+  mobCount.innerText = uncheckedItems.length;
+}
+
+// update count when page loads
+updateItemCount();
+
+// update count when a checkbox is checked or unchecked
+document.querySelectorAll('.list input[type="checkbox"]').forEach((checkbox) => {
+  checkbox.addEventListener('change', updateItemCount);
+});
+
+/*const itemCount = document.querySelector('.count span');
 const mobCount = document.querySelector('.mob-count span');
 
 itemCount.innerText = document.querySelectorAll('.list').length;
@@ -30,6 +49,13 @@ const addButton = document.querySelector('.todo-input button');
 const itemInput = document.getElementById('todo-input');
 const todo = document.querySelector('.todos ul');
 const itemID = document.querySelector('.filters input[type="radio"]:checked');
+
+itemInput.addEventListener("focus", () => {
+  itemInput.placeholder = "Currently typing";
+});
+itemInput.addEventListener("blur", () => {
+  itemInput.placeholder = "Create a new todo...";
+});
 
 addButton.addEventListener('click',()=>{
   if(itemInput.value.length > 0){
@@ -128,6 +154,12 @@ const clear = document.querySelector('.clear');
 const mobClear = document.querySelector('.mob-clear');
 
 clear.addEventListener('click',()=>{
+  const itemChecked = document.querySelectorAll('.list input[type="checkbox"]:checked');
+  itemChecked.forEach(item=>{
+      removeItems(item.closest('li'));
+  })
+})
+mobClear.addEventListener('click',()=>{
   const itemChecked = document.querySelectorAll('.list input[type="checkbox"]:checked');
   itemChecked.forEach(item=>{
       removeItems(item.closest('li'));
