@@ -16,38 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   
-
-  
  //Count Items left
-
- //Count Items left
-const itemCount = document.querySelector('.count span');
-const mobCount = document.querySelector('.mob-count span');
-
-function updateItemCount() {
-  const uncheckedItems = document.querySelectorAll('.list:not(.checked)');
-  itemCount.innerText = uncheckedItems.length;
-  mobCount.innerText = uncheckedItems.length;
-}
-
-// update count when page loads
-updateItemCount();
-
-// update count when a checkbox is checked or unchecked
-document.querySelectorAll('.list input[type="checkbox"]').forEach((checkbox) => {
-  checkbox.addEventListener('change', updateItemCount);
-});
-
-/*const itemCount = document.querySelector('.count span');
-const mobCount = document.querySelector('.mob-count span');
-
-itemCount.innerText = document.querySelectorAll('.list').length;
-mobCount.innerText = document.querySelectorAll('.list').length;
 
 /*Adding items */
 const addButton = document.querySelector('.todo-input button');
 const itemInput = document.getElementById('todo-input');
-const todo = document.querySelector('.todos ul');
 const itemID = document.querySelector('.filters input[type="radio"]:checked');
 
 itemInput.addEventListener("focus", () => {
@@ -72,40 +45,26 @@ itemInput.addEventListener('keyup',(event)=>{
   }
 })
 
-function addItems(text){
-  const item = document.createElement('li');
-  item.innerHTML = 
-  `
-  <label class="list">
-  <input class="checkbox" type="checkbox"> 
-  <span class="text">${text}</span>
-  </label>
-  <span class="remove"></span>
-  `;
-  if(itemID.id === 'completed'){
-      item.classList.add('hidden');
-  }
-  todo.append(item);
-  updateCount(1);
-}
 
-function updateCount(num) {
-  itemCount.innerText = +itemCount.innerText + num;
+
+function addItems(text){
+    createTodo(text);
+    updateCount();
 }
 
 /*remove items */
 function removeItems(item){
-  item.remove();
-  updateCount(-1);
+    removeTodo(item.getAttribute('data-id'));
+    updateCount();
 }
 
-todo.addEventListener('click',(event)=>{
+todoList.addEventListener('click',(event)=>{
   if(event.target.classList.contains('remove')){
       removeItems(event.target.parentElement);
   }
 })
 
-todo.addEventListener('touchstart',(event)=>{
+todoList.addEventListener('touchstart',(event)=>{
   if(event.target.classList.contains('remove')){
       removeItems(event.target.parentElement);
   }

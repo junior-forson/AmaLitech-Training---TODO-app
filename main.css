@@ -237,6 +237,10 @@ body.dark .todos input{
     border: 1px solid hsl(234, 11%, 52%);
   }
 
+  body.dark .todos input:hover{
+    border: 1px solid #C058F3;
+  }
+
 body.dark .todos input:checked ~ .text{
     text-decoration: line-through;
     color:hsl(234, 11%, 52%);
