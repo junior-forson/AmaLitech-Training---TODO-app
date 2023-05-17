@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   
- //Count Items left
+
 
 /*Adding items */
 const addButton = document.querySelector('.todo-input button');

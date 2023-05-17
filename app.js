@@ -28,7 +28,14 @@ function updateCount() {
     document.querySelector('.mob-count span').innerText = numberOfTodos();
 }
 
-const numberOfTodos = () => todos.filter(todo=> todo.status === 'active').length;
+//const numberOfTodos = () => todos.filter(todo=> todo.status === 'active').length;
+
+const numberOfTodos = () => {
+    const activeTodos = todos.filter(todo => todo.status === 'active');
+    return activeTodos.length;
+  };
+  
+
 
 function createTodo(title){
     const todo = {id: (todos.length + 1),title, status: 'active'};
